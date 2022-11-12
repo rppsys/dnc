@@ -1,0 +1,4 @@
+DNC_Zouk_V1_Condutor_BAS_LUG_ESQ
+1:2:3:pE.JUN
+2:1:1:pD.JUN
+3:1:2:pE.JUN

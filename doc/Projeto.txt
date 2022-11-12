@@ -1,0 +1,139 @@
+Estava querendo escrever em python mas acho que vou me render para o Delphi + Access. E depois de ter algo pronto, posso portar para python. Sim, porque aí posso ir direto pra porgramação. Python ainda estou engatinhando.
+
+Tá, se eu quiser implementar isso até pq eu não achei nada implementado do tipo terei que criar uma extensão para arquivos do tipo Sequencia de Dança.
+
+.dnc
+
+Arquivos .dnc serão textos com os passos da dança no formato:
+
+
+T: TAGS1 | TAGS2
+
+T é o tempo, no zouk é 1,2 apenas.
+As TAGS1 são os tipos de passos que podem ser dados com o pé direito ou esquerdo do condutor. TAGS2 são os passos que são dados com a dama.
+
+
+
+Enfim, eu preciso de um interpretador. É um programa capaz de abrir os arquivos .dnc e separar os campos do arquivo.
+
+Preciso também de um arquivo texto para descrever as TAGs. E os objetos. Ainda não sei como fazer isso. Mas acho que o negócio é usar bancos de dados.
+
+
+Objetos
+pD = Pé Direito
+pE = Pé Esquerdo
+
+
+Eu acho que tenho que usar OO e escrever classes para os objetos.
+
+Tenho que ter em mente que, inicialmente, o que quero com esse projeto é conseguir descrever os passos de sequencias de danças. Isso por si só não será fácil. 	Depois, eu posso criar uma animação de um par de pessoas executando os passos. Mas inicialmente, preciso conseguir descrever os passos de dança.
+
+PEnso assim, cada objeto pD e pE tem uma tabela para si. os registros dessas tabelas sao os metodos possiveis, categorizados quanto ao tempo.
+
+1: pD.
+
+O programa já sabe que tenho que acessar a tabela pD e categorizar os passos que possuem o tempo 1.
+
+
+tb_pD
+	strPasso Ex.: ""
+	strTempos
+
+Ok, mas e a hierarquia?
+
+Por isso preciso de XML e um interpretador XML porque o esquema de tabela não serve.
+
+Preciso carregar o XML "pD" para a memória e a partir dele saber que existe o passo pD.hor.frt por exemplo.
+
+A pergunta é como criar um interpretador de código.
+
+O que dá pra fazer é começar de algum lugar e depois vai modificando e evoluindo.
+
+Posso fazer uma estrutura de banco de dados em forma de árvore como a que fiz na minha agenda para criar cada objeto e seus métodos. 
+
+pD.HOR.JNT
+
+E ai eu classifico todos eles com o tempo 1.
+
+Beleza! E depois?
+
+Depois eu crio o .ldc
+
+Que é uma biblioteca de sequencias usando os passos atomicos da árvore que são hard coded. O ideal seria escrever em XML mas vai dar trabalho então vou fazer direito em um banco de dados.
+
+<BASE_HOR>
+1: pD.HOR.abr
+1: pE.HOR.jnt
+1: pD.HOR.abr
+<BASE_VER>
+1: pD.HOR.abr
+1: pE.HOR.jnt
+1: pD.HOR.abr
+
+Aqui ele também deveria criar uma árvore temporária na memória contendo:
+
+
+BASE_HOR (Objeto Sequencia) do tipo T=3
+BASE_VER (Objeto Sequencia) do tipo T=3
+
+BASE_HOR terá tempo de 3 (1+1+1) e ai posso usar BASE_HOR para novas sequencias.
+
+Agora, posso usar BASE_HOR e BASE_VER como uma opção de sequencia junto aos passos.
+
+Exemplo:
+
+COMPLEXO.dnc
+
+>>Importa BASE_HOR
+
+ao importar BASE_HOR
+
+posso usar BASE_HOR
+
+<SEQ1>
+3: BASE_HOR
+3: BASE_VER
+1: pD.HOR.ABR
+3: BASE_VER
+
+SEQ1 se torna um novo objeto que por sua vez pode ser usado em outros arquivos.
+
+<SEQ_Complexo>
+10: SEQ1
+3: BASE_HOR
+
+ou seja, para dar certo preciso descrever todos os movimentos básicos
+
+o que posso fazer é, antes de fazer o editor, codigifcar tudo em formato nao XML, mas esse formato que inventei ai para sequencias.
+
+OS passos posso fazer um arquivo .pso (passo) que é a unidade do passo. Sequencias usam passos ou outras sequencias. Passos são a descrição dos passos hard coded.
+
+
+Então tenho 3 arquivos já:
+
+.pso = Descricao dos passos unitários da dança em questão. É um arquivo parecido com XML que descreve as possibilidades de passos unitários de uma dança.
+
+.sqn = Descricao de uma sequencia de passos no formato
+<NOME_DA_SEQUENCIA>
+T: passos
+
+.ldn = É uma bibliteca de sequencias. É um conjunto de sequencias básicas que posso usar dentro de um .sqn. o Formato é
+
+<NOME_DA_SEQUENCIA>
+T: passos
+T: passos
+T: passos
+<NOME_DA_SEQUENCIA 2>
+T: passos
+T: passos
+T: passos
+
+etc...
+
+Agora tenho que estudar se vou precisar de uma estrutura nova para cada ritmo (zouk, forro, etc ou se da pra usar uma estrutura .pso genérica que teoricamente deveria servir para qualquer ritmo).
+
+
+
+ 
+
+

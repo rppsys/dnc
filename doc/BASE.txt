@@ -1,0 +1,181 @@
+Os comandos dados aos pés esquerdo pE e direito pD são sempre relativos. Um pé é sempre relativo ao outro. Então ao mandar o pé esquerdo abrir, significa que estamos levando-o à esquerda do direito. Ao mandar o pé esquerdo juntar, estamos levando-o para proximo do pé direito.
+
+Os tipos de pé são:
+	pE: Pé Esquerdo
+	pD: Pé Direito
+
+E os comandos são:
+	ABR: Abrir - Distanciar um pé em relação ao outro se afastando
+	CRZ: Cruzar - Distanciar um pé em relação ao outro cruzando - è como se fosse um abrir só que no sentido oposto
+	JUN: Juntar - Trazer um pé para junto do outro
+	FRT: Equivalente ao abrir, mas na direção vertical sentido para frente
+	TRZ: Equivalente ao abrir, mas na direção vertical sentido para traz
+
+Veja que CRZ, FRT e TRZ, por causa das propriedades 3d do corpo humano, são movimentos onde há cruzamento entre um pé e o outro.
+
+AInda, o Cruzamento pode ocorrer à frente ou Atras. 
+
+	CRF
+	CRT
+
+Alem disso, nos movimentos geralmente os pés nunca se repetem. Após um vem o outro. 
+	
+MAs temos alguns problemas:
+Existe a transferencia ou noa de peso.
+Vou fazer assim. O defaul é a tranfwrencia de peso ocorrer. Mas se ela não ocorre, ou seja é uma marcação apenas como no "balança" do samba, então vou usar um operador ao final do comando para
+indicar que o peso não é transferido. Esse operador será um "*"
+
+Exemplo.: A sequencia abaixo mostra o balanço do samba para a esquerda.
+
+
+
+			tempo: Condutor | Conduzido |  pegada | POSPAR
+			3: pE.ABR 
+			1: pD.JUN*
+			2: pD.ABR
+
+
+As colunas serão sempre
+	Tempo
+	Condutor
+	Conduzido
+	Pegada
+	PosicaoPar
+
+
+
+			ordem: contagemHumana : tempo: Condutor | Conduzido |  pegada | POSPAR
+			1:3:2: pE.ABR | pD.ABR | frente | circ_bei
+			2:1:1: pD.JUN | pE.JUN | frente | circ_bei
+			3:2:1: pE.JUN | pD.JUN | frente | circ_bei
+
+
+
+
+<BASE>
+	<HRZ>	
+		<ESQ>
+			tempo: Condutor | Conduzido |  pegada | POSPAR
+			3: pE.ABR | pD.ABR | frente | circ_bei
+			1: pD.JUN | pE.JUN | frente | circ_bei
+			2: pE.JUN | pD.JUN | frente | circ_bei
+		<DIR>
+			3: pD.ABR | #Simetrico | #Idem | #Idem
+			1: pE.JUN | #Simetrico | #Idem | #Idem 
+			2: pD.JUN | #Simetrico | #Idem | #Idem
+
+		<CEF> // Cruza a esquerda a frente
+			3: pD.CRF | #Simetrico | #Idem | #Idem
+			1: pE.JUN | #Simetrico | #Idem | #Idem 
+			2: pD.JUN | #Simetrico | #Idem | #Idem
+		<CDF> // Cruza a direita a frente
+			3: pE.CRF | #Simetrico | #Idem | #Idem
+			1: pD.JUN | #Simetrico | #Idem | #Idem 
+			2: pE.JUN | #Simetrico | #Idem | #Idem
+		<CET> // Cruza a esquerda a tras
+			3: pD.CRT | #Simetrico | #Idem | #Idem
+			1: pE.JUN | #Simetrico | #Idem | #Idem 
+			2: pD.JUN | #Simetrico | #Idem | #Idem
+		<CDT> // Cruza a direita a tras
+			3: pE.CRT | #Simetrico | #Idem | #Idem
+			1: pD.JUN | #Simetrico | #Idem | #Idem 
+			2: pE.JUN | #Simetrico | #Idem | #Idem
+
+
+
+
+
+	<TRZ>
+		3: pE.TRZ | 
+		1: pD.JUN | 
+		2: pE.JUN | 
+	<FRT>
+		3: pD.FRT | 
+		1: pE.JUN | 
+		2: pD.JUN | 
+
+
+
+Ótimo, mas ainda falta uma última filosofia.
+
+Ao executar, por exemplo, pD.ABR
+
+
+podemos querer executar um giro, ou dar uma pisada para frente. Ou pior, podemos querer pisar com o pé direito com uma rotação de 45 graus para a direita para começar um movimento de giro. Enfim, não adianta só abrir, preciso abrir com o pé rotacionando.
+
+Como um passo é sempre relativo ao outro. O proximo movimento de JUNTO fara com que o pe esquerdo venha e rotacione tb para ficar ...
+
+enfim...
+
+A posicao de abrir pode agora ocorrer com translacoes e rotacoes
+
+
+Translacoes
+Abrir a uma distancia padrao normal
+ABRIR à frente dessa posicao padrao
+Abrir atras dessa posicao padrao
+abrir mais pra o lado direito dessa posicao adrao
+abrir menos pra o lado direito dessa posicao adrao
+
+
+Rotatoceos
+
+Abrir sem rotacao
+Abrir com rotacao
+
+E o abrir com rotacao posso efeturar diversos angulos de rotacao em sentido horario ou antiu-horario ao eixo do pe.
+
+E preciso de diferenciar todos essas variacoes do abrir
+
+Entao fazer comandos para todas as possibilidade de abrir é inviável. Ia fica impossivel e não pratico.
+
+A solucao que pensei seria que o comando
+
+pE.ABR
+
+seja um comando básico do abrir sem translacao e sem rotacao
+
+A translacao aqui tem que ser pensada a partir da posicao final do abrir.
+
+Pensa que o abrir projeta o pé para sua situação final normal que é um passo para o lado. A partir dessa situacao final hipotpética é que podemos aplicar translacoes e rotacoes do pé.
+
+Ada, estou tentando d=ser genérico, porque o pé pode ser o esquerdo ou o direito. E todos os comandos de um pé sempre são relativo ao outro. Estou desenvolvendo uma linguagem de proigramacao para descrever passos de dança de bípedes. Passos de dança de quadrupedes teriam que ter toda uma nova abordagem.
+
+Finalomente, para resolver essas variacoes do ABRIR e de outros passos, penso em transfroamr esses comandos em funcoes com 2 argumentos (translacao e rotacao)
+
+assim posso indicar
+
+pE.ABR ==> abrir normal
+
+pe.ABR(translacao="afastar")
+pe.ABR(translacao="aproximar")
+pe.ABR(rotacao="+45") indicando que é um abrir sem translacao com rotação nk sentido de se afastar (para o pe esquerdo valor positivo significa se afastar ou um giro no sentido antihorario, para o pe direito signidicaria um giro no sentid horario, enfim, o sentido do giro depende do valor ser positivo ou negativo e tambem do pé. 
+
+Preciso filosofar muito mais sobre isso.
+
+Criar uma documentacao extensa. Estudar mesmo antes de codificar.
+
+
+Vou resolver o problema do argumento criando um arco do tipo "argumento" e elencando os possiveis argumentos daquele passo. Os argumentos são, na verdade modificadores e poderão ser:
+
+tra="" = translação
+rot="" = rotação
+esp="" = efeito especial
+
+
+Os valores possiveis de cada um depois eu penso.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

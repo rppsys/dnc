@@ -1,0 +1,4 @@
+STP_Sertanejo_V1_Condutor_BAS_LAT_DIR
+1:2:3:pD
+2:1:1:pE
+3:1:2:pD

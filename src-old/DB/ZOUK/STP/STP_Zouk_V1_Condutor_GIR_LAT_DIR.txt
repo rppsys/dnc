@@ -1,0 +1,4 @@
+STP_Zouk_V1_Condutor_GIR_LAT_DIR
+1:2:3:pD.ABR(rot=fq)
+2:1:1:pE.FRT(rot=dq)
+3:1:2:pD.FRT(rot=fv)

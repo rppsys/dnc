@@ -1,0 +1,4 @@
+DNC_Zouk_V1_Conduzido_BAS_LAT_DIR
+1:2:3:pE.ACF
+2:1:1:pD.JUN
+3:1:2:pE.JUN

@@ -1,0 +1,31 @@
+Podemos aglutinar sequencias.
+
+
+// Essa é uma sequencia no tempo
+
+<BASE_HORZ>
+	T: BASE.ESQ
+	T: BASE.DIR
+
+<BASE_VERT>
+	T: BASE.TRZ
+	T: BASE.FRT
+
+// Essa é outra
+
+S: <BASE_HORZ>
+S: <BASE_VERT>
+
+O arquivo com sequencia deve ter as tags de passos
+
+S: <BASE_HORZ>
+S: <BASE_HORZ>
+S: <BASE_HORZ>
+S: <BASE_HORZ>
+
+
+Sequencias são conjuntos de passos dados no tempo.
+
+
+
+

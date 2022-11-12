@@ -1,0 +1,4 @@
+STP_Sertanejo_V1_Condutor_BAS_VER_TRS
+1:1:1:pD.TRS
+2:1:2:pE.LUG
+3:1:3:pD.FRT
