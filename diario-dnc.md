@@ -12,3 +12,11 @@ Este arquivo de diário eu vou planejando os próximos passos bem como reltando 
 
 Criei um repositório público no github para ir subindo o estado atual na esperança que sabe de alguém perceber o quanto esse projeto é legal e quem sabe querer ajudar. E também, para que o código fonte fique na núvem disponibilizado de forma gratuita para qualquer pessoa que quiser continuar a partir  dessas idéias e desse trabalho.  
 
+
+## TODO
+
+Acho que boa parte do código já funciona.
+Preciso ver os vídeos que deixei, brincar, testar, compreender e depois tentar criar as interfaces gráficas.
+
+criar uma pasta lab para usar de laboratorio e ir explorando novamente o codigo.
+E depois quem sabe criar novos videos com a documentacao. 
