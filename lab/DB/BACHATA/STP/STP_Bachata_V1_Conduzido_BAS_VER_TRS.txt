@@ -1,0 +1,5 @@
+STP_Bachata_V1_Condutor_BAS_VER_TRS
+1:2:3:pD.TRS
+2:1:1:pE.JUN
+3:1:2:pD.TRS
+4:1:4:pE.JUN*

@@ -1,0 +1,5 @@
+STP_Bachata_V1_Condutor_BAS_LUG_DIR
+1:1:1:pD.LUG
+2:1:2:pE.LUG
+3:1:3:pD.LUG
+4:1:4:pE.LUG*

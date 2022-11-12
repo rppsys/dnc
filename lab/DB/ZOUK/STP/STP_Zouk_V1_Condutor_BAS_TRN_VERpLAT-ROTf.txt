@@ -1,0 +1,4 @@
+STP_Zouk_V1_Condutor_BAS_TRN_VERpLAT-ROTf
+1:2:3:pE.TRS(rot=dq)
+2:1:1:pD.JUN
+3:1:2:pE.JUN

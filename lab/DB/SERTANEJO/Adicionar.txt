@@ -1,0 +1,13 @@
+Cadastrar:
+Base "avançada" parecida com Zouk - O nome é ?
+Giro Duplo Para Dentro Passando Por Baixo da Mão
+Trocar de Lados Pegando a Cintura
+Gira para dentro jogando a dama para a direita e abrindo - parece Zouk (1)
+	A partir daqui temos:
+	Giro da dama para dentro pela direita (dela) na qual ao final do giro ela passa por baixo do braço e abre
+	Giro da dama para dentro pela direita(dela) na qual ao final ela fica abraçada com o cavaleiro e ocorre a "caminhada"
+	Giro da dama para fora na qual ela volta para a posicao final em (1)
+Sequencia de giros do cavaleiro e dama levando para a posicao inicial
+
+
+

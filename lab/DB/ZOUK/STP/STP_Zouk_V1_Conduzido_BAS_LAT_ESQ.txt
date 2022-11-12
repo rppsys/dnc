@@ -1,0 +1,4 @@
+DNC_Zouk_V1_Conduzido_BAS_LAT_ESQ
+1:2:3:pD.FRT
+2:1:1:pE.FRT(rot=dq)
+3:1:2:pD.JUN(rot=fq)

@@ -1,0 +1,4 @@
+STP_Zouk_V1_Condutor_BAS_TRN_VERpLAT-LUG
+1:2:3:pD.LUG
+2:1:1:pE.LUG
+3:1:2:pD.LUG
