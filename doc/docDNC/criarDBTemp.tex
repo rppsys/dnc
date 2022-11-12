@@ -1,0 +1,195 @@
+
+\section{criarDBTemp}
+
+O arquivo criarDBTemp.py cria os bancos de dados para cada ritmo.
+
+\subsection{Descrição das Tabelas}
+
+O banco de dados é estruturado em forma de um grafo orientado. Para isso são importantes 2 tabelas: 
+
+\begin{enumerate}
+	\item \textbf{tbNO} - A tabela tbNO contém os nós do grafo. 
+	\item \textbf{tbAD} - A tabela tbAD contém as ligações entres os nós.	
+\end{enumerate}
+
+Além dessas duas tabelas, podem existir diversas outras tabelas de tipos de nós. Essas tabelas contem as informações de cada nó do grafo. Contudo, neste banco de dados genérico criarDBTemp só existe até o momento uma única tabela de informações: A tabela tbSTP.
+
+\begin{enumerate}
+	\item \textbf{tbSTP} - A tabela tbSTP contém as informações da estrutura organizacional dos passos desse ritmo.
+\end{enumerate}
+
+A seguir, detalha-se cada uma dessas estruturas.
+
+
+\subsubsection{Tabela tbNO}
+
+tbNO é a tabela com os Nós do grafo orientado.
+
+Essa tabela possui a seguinte estrutura:
+
+\begin{itemize}
+	% -------------------------------------------------------------------------------
+	\item \textbf{cod}: Inteiro - Código numérico único do nó.
+			\begin{itemize}
+				\item a
+			\end{itemize}
+
+	% -------------------------------------------------------------------------------
+	\item \textbf{typeNO}: String - Tipo de nó. Indica para qual tabela aponta o nó.
+			\begin{itemize}
+				\item root: Não aponta para nenhuma tabela, este é o nó ROOT. Ele aponta para todas as estruturas do banco.
+				\item stp: Indica que o nó aponta para um registro da tabela tbStp.
+			\end{itemize}
+	% -------------------------------------------------------------------------------	
+	\item \textbf{codPointer}: Inteiro - Código do registro na tabela typeNO para o qual esse nó aponta.
+			\begin{itemize}
+				\item a
+			\end{itemize}
+	% -------------------------------------------------------------------------------	
+	\item \textbf{drwGX}: Informações para desenhar o nó na tela.
+			\begin{itemize}
+				\item a
+			\end{itemize}
+	% -------------------------------------------------------------------------------	
+	\item \textbf{drwGY}: Informações para desenhar o nó na tela.
+			\begin{itemize}
+				\item a
+			\end{itemize}
+	% -------------------------------------------------------------------------------	
+	\item \textbf{drwLev}: Informações para desenhar o nó na tela.
+			\begin{itemize}
+				\item a
+			\end{itemize}
+	% -------------------------------------------------------------------------------	
+	\item \textbf{drwHei}: Informações para desenhar o nó na tela.
+			\begin{itemize}
+				\item a
+			\end{itemize}
+	% -------------------------------------------------------------------------------	
+	\item \textbf{drwPos}: Informações para desenhar o nó na tela.
+			\begin{itemize}
+				\item a
+			\end{itemize}
+	% -------------------------------------------------------------------------------	
+	\item \textbf{drwRel}: Informações para desenhar o nó na tela.
+			\begin{itemize}
+				\item a
+			\end{itemize}
+	% -------------------------------------------------------------------------------	
+	\item \textbf{booActive}: Indica se o nó está ativo. Ainda não estou usando isso para nada.
+			\begin{itemize}
+				\item 1 = Ativo
+				\item 0 = Inativo
+			\end{itemize}
+	% -------------------------------------------------------------------------------	
+	
+\end{itemize}
+
+% ########################################################################
+
+\subsubsection{Tabela tbAD}
+
+tbAD é a tabela que indica que nó se liga a qual outro nó e o tipo de ligação.
+
+A filosofia adotada é que uma ligação DE PARA é unidirecional.
+
+Essa tabela possui a seguinte estrutura:
+
+\begin{itemize}
+	% -------------------------------------------------------------------------------
+	\item \textbf{cod}: Inteiro - Código numérico único do registro que indica uma ligação.
+			\begin{itemize}
+				\item a
+			\end{itemize}
+
+	% -------------------------------------------------------------------------------
+	\item \textbf{typeAD}: String - Tipo de ligação.
+
+
+\emph{Atualmente estou descrevendo os tipos de cada tbSTP, mas não é isso que farei pois é redundante. Criarei novos tipos de ligação.}
+
+Os typeAD possuem a seguinte formação: D.nome
+
+\begin{itemize}
+	\item D : Número que indica a direção. 1 indica que é uma ligação que cria uma árvore ordenada. 2 indica que é uma ligação entre nós da árvore e, portanto, não vou seguir. 1 também indica que é uma ligação unidirecional. 2 - indica que a ligação é bidirecional, então,
+	
+	\item nome: É o nome da ligação.
+	
+\end{itemize}
+
+
+Os tipos de ligação podem ser:
+
+
+			\begin{itemize}
+				\item \textbf{1.org}: Ligação gerada pelo arquivo csv escrita pelo usuário para ORGANIZAR os passos de dança.
+				\item \textbf{1.prop}: Ligação gerada pelo \emph{VERIFICADOR} para criar propriedades.
+
+				\item \textbf{2.vv}: Acrônimo para vai-vem - Ligação manual entre duas leafs indicando que PARA UM MESMO AGENTE (condutor ou conduzido) o que uma sequencia de passos faz a outra volta para o mesmo lugar de partida. 
+				
+				Ex.: Se o passo condutor.base.hoz.esq vai para a esquerda, então o passo condutor.base.hor.dir volta para a posição inicial. Então esses dois passos serão ligados por uma conexão \textbf{vv}. 
+				
+				Pela filosofia de unidirecionalidade do tbAD, passos conectados pela conexão do tipo \textbf{vv} deverão ter 2 registros para cada possível deslocamento.
+			
+				
+				\item \textbf{2.par}: Indica que o passo de um agente é um possível par para o outro agente. 
+				
+				Ex.: No forró o passo \emph{condutor.base.ver.frt} faz par com o passo \emph{conduzido.base.ver.trs} e vice versa. 
+				
+				Como a filosofia adotado é que todo registro da tabela AD é sempre unidirecional, preciso criar sempre dois tbADs um para conectar a IDA e o outro a VOLTA.
+			
+			
+			
+			\end{itemize}
+
+	% -------------------------------------------------------------------------------	
+	\item \textbf{codFrom}: Código do tbNO DE onde PARTE a ligação.
+	% -------------------------------------------------------------------------------	
+	\item \textbf{codTo}: Código do tbNO PARA onde CHEGA a ligação.
+	% -------------------------------------------------------------------------------	
+	
+\end{itemize}
+
+% ########################################################################
+% ####### TABELA tbSTP    ################################################
+% ########################################################################
+
+
+
+\subsubsection{Tabela tbSTP}
+
+tbSTP é a tabela que vai formar a descrição de todos os passos (Steps) do ritmo. Ela vai organizar os passos em uma estrutura de árvore que servirá para gerar o nome dos arquivos que indicam as sequências de passos fundamentais para se dançar esse ritmo.
+
+Essa tabela possui a seguinte estrutura:
+
+\begin{itemize}
+	% -------------------------------------------------------------------------------
+	\item \textbf{cod}: Inteiro - Código numérico único do nó.
+	% -------------------------------------------------------------------------------
+	\item \textbf{strNAME}: String - Nome.
+	% -------------------------------------------------------------------------------	
+	\item \textbf{strTYPE}: String - Tipo de Nó. Esses tipos são fornecidos pelo arquivo csv, mas são tipos definidos (não pode ser qualquer coisa) seguem uma regra.
+	
+	Os tipos de nós possíveis são:
+	
+	\begin{itemize}
+		\item \textbf{root}: indica o nó root.
+		\item \textbf{mod}: Modalidade do ritmo. Ex.: Zouk, Forró, Sertanejo.
+		\item \textbf{sub}: Submodalidade do ritmo. Ex.: Brasileiro, Versão 1, V1.
+		\item \textbf{cond}: Indica se trata-se de um passo pertencente ao Condutor ou Conduzido.
+		\item \textbf{tag}: Tag indica que este é um nó que faz parte de uma hierarquia de classificação do passo. Não é o passo propriamente dito ainda. É uma forma de organizar os passos. Uma tag pode se ligar a outras tags até finalmente chegarmos na folha leaf que é o último elemento da árvore gerada por ligações 1.org. 
+		\item \textbf{leaf}: Elemento folha do passo. Este é o nome que diferencia um passo entre seus irmãos dentro de uma mesma tag de classificação. Veja que o nome do passo todo sai do elemento ROOT e vai até o elemento LEAF usando underlines para se gerar o nome do arquivo .txt (que no futuro vou dar a extensão .stp) que contem a sequencia de passos fundamentais. São os leafs que podem ser ligados entre sí por outras ligações como 2.vv e 2.par para indicar pares de passos vai-e-vem e pares de passos condutor-conduzido respectivamente.
+		\item \textbf{prop}: Indica que o nó é uma propriedade gerada pelo VERIFICADOR. As propriedades são nós gerados pela ligação 1.prop
+	\end{itemize}
+
+
+\item \textbf{strVALUE}: String - Cada  nó pode carregar também um valor. É o caso dos nós do tipo prop que vão armazenar valores. Nos nós de classificação o valor do strVALUE é string vazia.
+
+\item \textbf{codNO}: Inteiro - Aponta para o registro da tabela tbNO que, por sua vez aponta para o meu código pela propriedade codPointer. Ficou redundante mas é para facilitar a programação. Posso sair da tabela tbNO e encontrar o registro tbSTP para o qual ele aponta ou sair do tbSTP e chegar no registro tbNO que aponta para mim.
+
+	
+\end{itemize}
+
+% ########################################################################
+% ########################################################################
+% ########################################################################

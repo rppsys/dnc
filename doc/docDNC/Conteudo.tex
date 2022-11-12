@@ -1,0 +1,87 @@
+\section{SO:Linux}
+
+\subsection{Leitura de Permissões de um Arquivo}
+
+\begin{figure}[ht]\centering
+	\includegraphics[width=\linewidth]{\figpath{SS_0611_KM_1.jpg}}
+	\caption{Permissões}
+	\label{fig:SS_0611_KM_1}
+\end{figure}
+
+	As permissões (figura \ref{fig:SS_0611_KM_1}) de acesso a um arquivo  ou diretório podem ser visualizadas com o uso do comando \textbf{ls -la}. 
+
+\begin{center}
+	\emph{Exemplo: -rwxr-xr-- 1 linus Alunos 500 Sep 10 14:12 carta.txt}
+\end{center}
+
+\textbf{A primeira letra diz qual é o tipo do arquivo.}
+\begin{itemize}
+	\item Caso tiver um d é um diretório,
+	\item Um l (ELE MINUSC) um link a um arquivo no sistema ,
+	\item Um - quer dizer que é um arquivo comum, etc.
+\end{itemize}
+
+\textbf{Da segunda a quarta letra (rwx) dizem qual é a permissão de acesso ao \textbf{dono  do arquivo.}}
+\begin{itemize}
+	\item Neste caso linus tem a permissão de ler (r - read), gravar (w - write) e executar (x - execute) do arquivo carta.txt.
+\end{itemize}
+
+\textbf{Da quinta a sétima letra (r-x) diz qual é a permissão de acesso ao \textbf{grupo do arquivo} .}
+\begin{itemize}
+	\item Neste caso todos os usuários que pertencem ao grupo Alunos tem a permissão de ler (r), e também executar (x) o arquivo carta.txt.
+\end{itemize}
+
+\textbf{Da oitava a décima letra (r--) diz qual é a permissão de acesso para os \textbf{outros usuários.}}
+\begin{itemize}
+	\item Neste caso todos os usuários que não são donos do arquivo carta.txt tem a permissão somente para ler o programa.
+\end{itemize}
+
+\subsection{Comando CHMOD}
+
+\textbf{RWX e UGO}
+\begin{itemize}
+	\item RWX = Permissões no formato binário RWX
+	\item UGO = Grupos que recebem essas permissões
+\end{itemize}
+
+
+\subsubsection{Forma Octal}
+
+\textbf{Exemplo: \$ chmod 750 teste}
+\begin{itemize}
+	\item Dará a permisão 7 (1+2+4 = xwr) para o dono, 5 (1+4 = xr) para o grupo e 0 (nada) para outros.
+\end{itemize}
+
+\begin{center}
+	\emph{Lembrar de RWX421 ==> R = 4 ; W = 2; X = 1}
+\end{center}
+
+\begin{itemize}
+	\item 1 = 1 = X
+	\item 2 = 2 = W
+	\item 3 = 2 + 1 = W + X
+	\item 4 = 4 = R
+	\item 5 = 4 + 1 = R + X
+	\item 6 = 4 + 2 = R + W
+	\item 7 = 4 + 2 + 1 = R + W + X
+\end{itemize}
+
+\subsubsection{Método UGO}
+
+\textbf{UGO}
+\begin{itemize}
+	\item U = Usuário = Dono
+	\item G = Grupo
+	\item O = Outros
+\end{itemize}
+
+\textbf{Exemplo: \$ chmod u+x,o-w+rx teste}
+\begin{itemize}
+	\item Acrescer x ao dono e remover w de outros, ao mesmo tempo que acresce rx.
+\end{itemize}
+
+\textbf{Exemplo: \$ chmod u=rw,go=r.}
+\begin{itemize}
+	\item Neste caso, poderemos dizer, diretamente, o que desejamos.
+\end{itemize}
+

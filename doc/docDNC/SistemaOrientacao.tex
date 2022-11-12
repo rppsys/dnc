@@ -1,0 +1,140 @@
+
+\section{Sistema de Orientação}
+
+O sistema de orientação é relativo a quem realiza o movimento. Esse sistema relativo é muito melhor do que o sistema absoluto pois permite que sejam objervados as simetrias da dança.
+
+
+\subsection{Sentidos de Giros}
+
+
+Dentro Direita
+
+Dentro Esquerda
+
+Fora Direita
+
+Fora Esquerda
+
+Ver tabela ODS
+
+
+
+\section{Classe Mão}
+
+
+A mão é uma classe parecida com a pé.
+
+\subsection{Objetos}
+
+Terá os objetos:
+
+\begin{itemize}
+	\item mE = Mão esquerda do agente
+	\item mD = Mão direita do agente
+	\item mM = Ambas as mãos do agente 
+\end{itemize}
+
+As diferença para a classe pé, é que a classe mão possui o objeto mM que serve para aplicar métodos para as duas mãos ao mesmo tempo.
+
+\subsection{Estados}
+
+As mãos podem assumir diversos estados. Estados são descrições estáticas das posições. Ver tabela ODS para as posições.
+
+Os estados podem ser Frente, Costas, Dog, Cat, Esquerda do Condutor com Direita do Conduzido (somente E), Direita (idem anterior), Esquerda com Esquerda (EE) ou Esquerda Invertida, Direita com Direita (DD) ou Direita Invertida.
+
+\subsection{Métodos}
+
+Assim como os pé possuem métodos, as mão também possuem. 
+
+
+Para os pés os métodos adotam como referencial o pé que realiza o movimento em relação ao pé que fica parado.
+pD.ABR manda vc abrir o pé direito em relação ao pé esquerdo que fica parado. 
+
+Contudo, nas mãos, podemos movimentar a mão esquerda e a mão direita ao mesmo tempo em uma infinidade de movimentos de condução no espaço 3D.
+O objetivo desse projeto é representar os movimentos de dança de forma simplificada se forma que os passos possam ser reproduzidos a partir
+da leitura de um texto ou pelo menos lembrados.
+
+Então eu preciso estudar os métodos das mãos.
+
+Eu já filosofei e cheguei a conclusao que novamente os movimentos mais básicos ocorrem com o referencial da mão que 
+realiza o movimento.
+
+Movimentos
+
+\begin{itemize}
+	\item Puxar
+	\item Empurrar
+\end{itemize}
+
+Mesmo assim vc pode puxar ou empurrar no plano xy para fazer condução, ou em planos xyz.
+
+Por enquanto vou me preocupar apenas com o plano xy. Movimentos no eixo Z fica para o futuro.
+
+
+
+\textbf{Movimentos Esquerda (ED) apenas ou Direita (DE) Apenas}
+
+\begin{itemize}
+	\item Mover para Dentro
+	\item Mover para Fora
+	\item Empurrar para Distante
+	\item Puxar para próximo
+	\item Girar para Fora 
+	\item Girar para Dentro
+\end{itemize}
+
+
+
+\textbf{Movimentos com as duas mãos dadas:}
+
+Os movimentos com as duas mãos dadas mM são mais complicados pois mover para dentro com a mão direita possui sentido de movimento
+oposto a mover para dentro com a mao esquerda. 
+
+Uma forma de tratar isso é adotando os sentidos esquerda e direita. 
+
+Assim: 
+
+\begin{itemize}
+	\item Mover para a direita
+	\item Mover para a esquerda
+	\item Empurrar para Distante
+	\item Puxar para próximo
+\end{itemize}
+
+
+Outra é adotando uma das mãos como o referencial para movimentos com as duas mãos dadas. 
+E ai, podemos usar os mesmos movimentos que para mãos soltas.
+
+Dessa forma, vou adotar o BRAÇO DIREITO como o braço referencial para movimentos de braços dados mM:
+
+E assim temos:
+
+\begin{itemize}
+	\item Mover para Dentro - Vai para a esquerda
+	\item Mover para Fora - vai para a direita 
+	\item Empurrar para Distante
+	\item Puxar para próximo
+	\item Girar para Fora 
+	\item Girar para Dentro
+\end{itemize}
+
+
+Uma última definição é com relação ao giro. Enquanto o movimento adota como referencial a mão do condutor.
+O referencial do giro é o conduzido.
+
+Assim Girar para Fora é para fora no referencial do conduzido. Essa definição facilita o entendimento.
+
+mM.girar para dentro = realiza um movimento de  giro para fora do condutor mas para dentro do conduzido.
+
+mM adota o mesmo referencial do mD logo 
+
+mD.girar para dentro, o giro ocorre para dentro do condutor e do conduzido. E ai o conduzido dá um giro Dentro Esquerdo.
+
+Preciso melhorar mais isso até ficar simples e intuitivo.
+
+
+
+
+
+
+

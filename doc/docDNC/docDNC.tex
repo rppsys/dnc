@@ -1,0 +1,135 @@
+
+
+%----------------------------------------------------------------------------------------
+%	PACKAGES AND OTHER DOCUMENT CONFIGURATIONS
+%----------------------------------------------------------------------------------------
+
+\documentclass[fleqn,8pt]{SelfArx} % Document font size and equations flushed left
+
+\usepackage[portuguese]{babel} % Specify a different language here - english by default
+\usepackage{cmap}				% Mapear caracteres especiais no PDF
+\usepackage{lmodern}			% Usa a fonte Latin Modern
+\usepackage[T1]{fontenc}		% Selecao de codigos de fonte.
+\usepackage[utf8]{inputenc}		% Codificacao do documento (conversão automática dos acentos)
+\usepackage{indentfirst}		% Indenta o primeiro parágrafo de cada seção.
+\usepackage{nomencl} 			% Lista de simbolos
+\usepackage{color}				% Controle das cores
+\usepackage{graphicx}			% Inclusão de gráficos
+
+%Para tipos de Itens
+\usepackage{amssymb}
+\usepackage{pifont} 
+\usepackage{bbding}
+\usepackage[normalem]{ulem} % Para fazer strikeout com \sout{Texto}
+
+\usepackage[final]{pdfpages} % Para incluir anexos no final
+
+%\usepackage{fancyhdr}
+%\usepackage{lastpage}
+
+\newcommand{\figpath}[1] {C:/Users/Ronie/Documents/Saturno/LOCAL/EXEDADOS/FIGURAS/#1}
+
+%Escolher um dos tipos de itens:
+%\renewcommand\labelitemi{-} % Traçado Pequeno
+%\renewcommand\labelitemi{--} % Traçado Médio
+%\renewcommand\labelitemi{---} % Traçado Grande
+%\renewcommand\labelitemi{$\star$} % Símbolo de Estrela
+%\renewcommand\labelitemi{\scriptsize$\blacksquare$} % Símbolo de Quadradinho
+%\renewcommand\labelitemi{\Checkmark} % Símbolo de V
+%\renewcommand\labelitemi{\XSolidBrush} % Símbolo de X
+%\renewcommand\labelitemi{\ding{51}} % Outro Símbolo de V
+%\renewcommand\labelitemi{\ding{55}} % Outro Símbolo de X
+%\renewcommand\labelitemi{\tiny$\bullet$} % Símbolo de Bolinha
+
+\renewcommand\labelitemi{\tiny$\bullet$} % Símbolo de Bolinha
+\renewcommand\labelitemii{--} % Símbolo de Traço Médio
+
+%----------------------------------------------------------------------------------------
+%	COLUMNS
+%----------------------------------------------------------------------------------------
+
+\setlength{\columnsep}{0.20cm} % Distance between the two columns of text
+\setlength{\fboxrule}{0.75pt} % Width of the border around the abstract
+
+%----------------------------------------------------------------------------------------
+%	COLORS
+%----------------------------------------------------------------------------------------
+
+\definecolor{color1}{RGB}{0,0,90} % Color of the article title and sections
+\definecolor{color2}{RGB}{0,20,20} % Color of the boxes behind the abstract and headings
+
+%----------------------------------------------------------------------------------------
+%	HYPERLINKS
+%----------------------------------------------------------------------------------------
+
+\usepackage{hyperref} % Required for hyperlinks
+\hypersetup{hidelinks,colorlinks,breaklinks=true,urlcolor=color2,citecolor=color1,linkcolor=color1,bookmarksopen=false,pdftitle={Title},pdfauthor={Author}}
+
+%----------------------------------------------------------------------------------------
+%	ARTICLE INFORMATION
+%----------------------------------------------------------------------------------------
+
+\JournalInfo{Projeto DNC} % Journal information
+\Archive{Documentação} % Additional notes (e.g. copyright, DOI, review/research article)
+
+\PaperTitle{Projeto DNC} % Article title
+
+\Authors{rppsys@gmail.com} % Authors
+\Authors{Ronie Paulucio Porfirio} % Authors
+\affiliation{} % Author affiliation
+\affiliation{} % Author affiliation
+\affiliation{} % Corresponding author
+
+\Keywords{} % Keywords - if you don't want any simply remove all the text between the curly brackets
+\newcommand{\keywordname}{Palavras-chave} % Defines the keywords heading name
+
+%----------------------------------------------------------------------------------------
+%	ABSTRACT
+%----------------------------------------------------------------------------------------
+
+\Abstract{Projeto Dança é uma forma de tentar escrever os passos de uma dança em par de forma a não esquecer.}
+
+%----------------------------------------------------------------------------------------
+
+\begin{document}
+\flushbottom % Makes all text pages the same height
+\maketitle % Print the title and abstract box
+\tableofcontents % Print the contents section
+\thispagestyle{empty} % Removes page numbering from the first page
+
+%----------------------------------------------------------------------------------------
+%	ARTICLE CONTENTS
+%----------------------------------------------------------------------------------------
+
+
+\input{Introducao}
+\input{SistemaOrientacao}
+\input{criarDBTemp}
+\input{criarDBTree}
+
+
+
+
+
+
+
+%------------------------------------------------
+\phantomsection
+\section*{Bons estudos} 
+
+%----------------------------------------------------------------------------------------
+%	REFERENCE LIST
+%----------------------------------------------------------------------------------------
+%\phantomsection
+%\bibliographystyle{unsrt}
+%\bibliography{sample}
+%----------------------------------------------------------------------------------------
+
+
+%\includepdf[pages=-]{ANEXOS/RAID.pdf}
+%\includepdf[pages=-,angle=90]{ANEXOS/ETHERNET.pdf}
+
+
+
+\end{document}
+
