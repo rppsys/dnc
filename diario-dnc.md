@@ -20,3 +20,14 @@ Preciso ver os vídeos que deixei, brincar, testar, compreender e depois tentar 
 
 criar uma pasta lab para usar de laboratorio e ir explorando novamente o codigo.
 E depois quem sabe criar novos videos com a documentacao. 
+
+## Animações
+
+Estou explorando
+
+https://www.geeksforgeeks.org/how-to-create-animations-in-python/
+
+Para ver se consigo fazer uma animacao de 2 passos se distanciando.
+A idéia seria gerar animações em tempo real para cada passo dado no editor.
+
+
