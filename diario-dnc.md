@@ -41,6 +41,67 @@ Os stps do Zouk já estão escritos.
 
 Quero mesmo é fazer maos uns estudos do matplotlib para estudar como plotar e visualizar os passos no ambiente 3d.
 
+Ficou interessante também.
+
+## Enfim gtk
+
+Enfim vou fazer o editor então se é o que falta.
+Ele vai abrir o arquivo de caminho e mostrar o caminho sendo percorrido ao lado.
+
+
+## Gtk nao - Ainda nao
+
+## Sistemas de Referencias
+
+Pista de Dança = P
+
+Condutor = T
+
+Conduzido = Z
+
+
+pD do Condutor = pD
+pE do Condutor = pE
+
+Um frame em cada um
+
+Transformações de um frame para outro
+
+Eu preciso de T que leva do Frame do pD para frame da Pista de Danca para poder plotar esses objetos de forma satisfatoria.
+
+A parte fácil é que estamos no Plano 2D. Entao os Ts serão matrizes 2x2.
+
+Agora vou ter que ver como fazer essas contas usando python.
+
+## Roda Imagem
+
+A rotação de imagens não é muito straight-forward, ou seja, precisarei de outras bibliotecas.
+
+
+https://stackoverflow.com/questions/59401957/rotating-images-on-a-matplotlib-plot
+
+https://note.nkmk.me/en/python-opencv-numpy-rotate-flip/
+
+Acho melhor usar:
+
+> scikit-image
+
+https://opensource.com/article/19/3/python-image-manipulation-tools
+
+> Pillow
+
+https://pythontic.com/image-processing/pillow/rotate
+
+Tem várias possibilidades mas por hj cansei.
+
+
+
+
+
+
+
+
+
 
 
 
