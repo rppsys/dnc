@@ -37,4 +37,7 @@ Vamos para os requisitos, ou seja, o pip-list:
 		pip install pygraphviz
 		pip install pydot
 
+#### Passos Fundamentais
 
+Cheguei à conclusão de que vou precisar revisar alguns passos fundamentais
+especialmente para produzir passos do samba.

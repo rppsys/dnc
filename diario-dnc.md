@@ -30,4 +30,20 @@ https://www.geeksforgeeks.org/how-to-create-animations-in-python/
 Para ver se consigo fazer uma animacao de 2 passos se distanciando.
 A idéia seria gerar animações em tempo real para cada passo dado no editor.
 
+Ficou bom!
+
+## Matplotlib
+
+Então.
+
+O stpEditor é um puro editor dos steps e facilita mas não é importante.
+Os stps do Zouk já estão escritos.
+
+Quero mesmo é fazer maos uns estudos do matplotlib para estudar como plotar e visualizar os passos no ambiente 3d.
+
+
+
+
+ 
+
 
