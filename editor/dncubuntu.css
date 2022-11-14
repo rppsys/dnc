@@ -1,0 +1,67 @@
+/*arquivo efg.css*/
+
+/* ################ */
+/* Editor de Textos */
+/* ################ */
+
+#IdTvEditor {
+  font: 22px Arial;
+}
+
+#IdTvEditor text {
+  color: white;
+  background-color: #333333;
+  caret-color:  red;
+  -gtk-secondary-caret-color: #df4a16;
+}
+
+#IdTvLinhas {
+  font: 22px Arial;
+}
+
+#IdTvLinhas text {
+  color: white;
+  background-color: #333333;
+  caret-color:  red;
+  -gtk-secondary-caret-color: #df4a16;
+}
+
+/* ################### */
+/* Seletor de Cenários */
+/* ################### */
+
+#tvTreeCenarios {
+  font-size: 22px;
+  background-color: #222222;
+}
+
+#tvTreeCenarios text {
+  color: white;
+  background-color: #333333;
+}
+
+#tvTreeCenarios.view rubberband {
+  border: 1px solid #b03a11;
+  background-color: red; 
+}
+
+#tvTreeCenarios.view:selected, #tvTreeCenarios.view:selected:backdrop {
+	border-radius: 0;
+	background-color: #E95420; 
+}
+     
+#tvTreeCenarios.view:selected:focus{
+	border-radius: 0;
+	background-color: #E95420; 
+}    
+   
+/* ################### */
+/* Labels */
+/* ################### */
+
+#IdLbStatusRight, #IdLbStatusCenter, #IdLbStatusLeft, #IdLbCenarios, #IdlbStatusRightBuffer {
+  color: white;
+  background-color: #444444;
+  font-size: 18px;
+}
+

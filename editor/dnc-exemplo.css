@@ -1,0 +1,70 @@
+/*arquivo app.css*/
+@define-color bg_color #535353;
+
+GtkWindow {
+    background-color: @bg_color;
+}
+
+.grid{
+	background-image: none;
+	background-color:@bg_color;
+	border:none;
+	border-bottom:1px solid ;
+
+}
+
+.label{
+	padding:5px;
+	margin:5px;
+}
+
+
+#lbl_fields{
+	color: #FFFFFF;
+	font-weight: bold;
+}
+
+
+#title{
+ 	color: #FFFFFF;
+ 	font-size: 20px;
+}
+
+.entry{
+	margin:5px;
+	padding: 5px;
+	border-radius: 0px;
+	border:1px solid #535353;
+
+}
+
+.entry:focus{
+	background-image: none;
+	background-color: #DDDD88;
+}
+
+.button{
+	background-image: none;
+	background-color:#008B8B;
+	color: #FFFFFF;
+	border-radius:0px;
+	border:none;
+	border-bottom:1px solid #008B8B;
+	box-shadow: none;
+	padding: 20px;
+	font-size:12px;
+}
+
+#btnpesquisar{
+	padding: 0px;
+}
+
+.button:hover{
+	background-image: none;
+	background-color:#20B2AA;
+}
+
+button { border-radius: 15px; border-width: 2px; border-style: outset; }
+button:hover { background: #dff; border-color: #8bb; }
+
+#lbCenarios {background-color:#008B8B;}

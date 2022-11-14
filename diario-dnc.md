@@ -101,6 +101,13 @@ Condutor ou Conduzido sao mesmas instancias da mesma classe Dançarino, Pessoa.
 
 O importante é ter dois pés. 
 
+## O Editor 
+
+Resolvi que em vez de desenvolver um novo editor do zero, vou pegar 
+um que tenho pronto e editar.
+
+E vou fazer tudo no mesmo app. Tanto o editor de caminhos quanto o editor de sequencias.
+
 
 
 

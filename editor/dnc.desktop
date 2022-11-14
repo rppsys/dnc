@@ -1,0 +1,11 @@
+[Desktop Entry]
+Name=EFG
+Version=0.1
+Exec=/home/ronie/prog/vEFG/bin/python3 /home/ronie/prog/efg/efg.py
+Comment=Sem comentarios
+Type=Application
+Terminal=true
+StartupNotify=true
+Categories=GTK;GNOME
+Icon=/home/ronie/prog/efg/efg.png
+
