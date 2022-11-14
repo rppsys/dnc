@@ -43,14 +43,14 @@ Cheguei à conclusão de que vou precisar revisar alguns passos fundamentais
 especialmente para produzir passos do samba.
 
 
-%matplotlib notebook
-import stepPlot as sp
-Condutor = sp.ClasseAgente('Condutor',True,10,10,5,0)
-Condutor.plotaAgente(20)
-Condutor.agenteDoStep('pD','ABR')
-Condutor.agenteDoStep('pE','JUN')
-Condutor.agenteDoStep('pD','ABR')
-Condutor.agenteDoStep('pE','JUN')
-Condutor.plotaAgente(20)
+        %matplotlib notebook
+        import stepPlot as sp
+        Condutor = sp.ClasseAgente('Condutor',True,10,10,5,0)
+        Condutor.plotaAgente(20)
+        Condutor.agenteDoStep('pD','ABR')
+        Condutor.agenteDoStep('pE','JUN')
+        Condutor.agenteDoStep('pD','ABR')
+        Condutor.agenteDoStep('pE','JUN')
+        Condutor.plotaAgente(20)
 
 
