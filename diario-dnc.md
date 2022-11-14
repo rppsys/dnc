@@ -108,7 +108,59 @@ um que tenho pronto e editar.
 
 E vou fazer tudo no mesmo app. Tanto o editor de caminhos quanto o editor de sequencias.
 
+## Sem delongas
 
+Sem delongas quero criar um comando que vai ler o arquivo de caminho
+Separar a parte que está o comando
+E mostrar as figuras aos lado
+
+Vou gerar as figuras em arquivos separados e ler no programa.
+ 
+Ficou bom!
+ 
+## Outras coisas
+
+Em vez de criar vários arquivos separados.
+Pensei que vai simplificar criar só um arquivo chamado por exemplo:
+
+"DNC_Zouk_V1.txt"
+
+E lá dentro eu coloco várias linhas assim:
+
+"DNC_Zouk_V1_Condutor" vai ser o equivalente ao Cenário
+
+DNC_Zouk_V1_Condutor_BAS_LAT_DIR
+1:2:3:pD.ABR
+2:1:1:pE.FCF
+3:1:2:pD.LUG
+
+DNC_Zouk_V1_Condutor_BAS_LAT_ESQ
+1:2:3:pE.ABR
+2:1:1:pD.FCF
+3:1:2:pE.LUG
+
+## Várias Possibilidades
+
+São várias possibilidades.
+
+Ao criar somente "DNC_Zouk_V1.txt"
+
+Lá dentro eu posso editar tudo.
+E depois ele lê esse arquivo para carregar as possibilidades de opções de sequencias.
+Para criar as sequencias.
+
+
+
+
+
+
+
+
+
+
+
+
+ 
 
 
 

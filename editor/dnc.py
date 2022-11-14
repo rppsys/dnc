@@ -56,6 +56,9 @@ import pilhaCircular as pC
 import tabelaString as tS
 import motorPesquisa as mP
 
+# Meus Imports de Dança
+import stepPlot as sP
+
 strSep = os.path.sep
 # strPathDir = os.getcwd()
 strPathDir = '/home/ronie/prog/dnc/editor'
@@ -74,9 +77,14 @@ strCSSFullFilename = u.iniRead(cfgINI, 'PATH', 'strCSSFullFilename',strCSSFullFi
 strExportLatexFullFilename = strPathDir  + strSep +  "latex" + strSep +  "txt" + strSep + "PRINCIPAL" + strSep + "output.tex"
 strExportLatexFullFilename = u.iniRead(cfgINI, 'PATH', 'strExportLatexFullFilename',strExportLatexFullFilename)
 
+# Imagens
+strImgAxFullFilename = strPathDir  + strSep +  "IMG" + strSep + "ax-atual.png"
+strImgBxFullFilename = strPathDir  + strSep +  "IMG" + strSep + "bx-atual.png"
+strImgDxFullFilename = strPathDir  + strSep +  "IMG" + strSep + "dx-atual.png"
+
 # Bibliotecas Gtk
 gi.require_version('Gtk','3.0')
-from gi.repository import Gtk,Gdk,Pango,GLib, GObject, Gio
+from gi.repository import Gtk,Gdk,Pango,GLib, GObject, Gio, GdkPixbuf
 
 # Carrega CSS
 screen = Gdk.Screen.get_default()
@@ -212,10 +220,30 @@ class Manipulador:
         self.MainWindow: Gtk.Window = Builder.get_object("main_window")
         # https://lazka.github.io/pgi-docs/Gtk-3.0/classes/Widget.html#Gtk.Widget
 
+        # -----------------------------
+        # Configurações dos Dançarinos
+        # -----------------------------
+        self.Condutor = sP.ClasseAgente('Condutor',True,10,10,7,0)
+        self.Condutor.plotaAgente(20)
+        self.atualizarCondutorImagens()
+
         # ----------------
         # Por último: Tenta abrir último arquivo aberto
         # ----------------
         self.tentaAbrirUltimoFeature()
+
+    def atualizarCondutorImagens(self):
+        self.abrirImagemResize('imgAX',strImgAxFullFilename, 250, 250)
+        self.abrirImagemResize('imgBX',strImgBxFullFilename, 250, 250)
+        self.abrirImagemResize('imgDX',strImgDxFullFilename, 250, 250)
+
+    def abrirImagemResize(self,strObj,strFilename,width,height):
+        # https://stackoverflow.com/questions/1269320/scale-an-image-in-gtk
+        # https://lazka.github.io/pgi-docs/GdkPixbuf-2.0/enums.html#GdkPixbuf.InterpType.BILINEAR
+        pixbuf = GdkPixbuf.Pixbuf.new_from_file(strFilename)
+        pixbuf = pixbuf.scale_simple(width, height, GdkPixbuf.InterpType.BILINEAR)
+        Builder.get_object(strObj).set_from_pixbuf(pixbuf)
+
 
     def tentaAbrirUltimoFeature(self):
         strFile = u.iniRead(cfgINI,'PATH','strFileFeatureFullFilename','')
@@ -354,7 +382,7 @@ class Manipulador:
         # Tags que Pintam a linha toda:
         self.listTagLine = [
             'funcionalidade',
-            'cenario',
+            '_condutor_',
             'contexto',
         ]
 
@@ -387,7 +415,7 @@ class Manipulador:
 
         self.dictTag = {}
         self.dictTag['funcionalidade'] = textbuffer.create_tag("funcionalidade", weight=Pango.Weight.BOLD, foreground="Red")
-        self.dictTag['cenario'] = textbuffer.create_tag("cenario", weight=Pango.Weight.BOLD, foreground="Yellow")
+        self.dictTag['_condutor_'] = textbuffer.create_tag("_condutor_", weight=Pango.Weight.BOLD, foreground="Yellow")
         self.dictTag['contexto'] = textbuffer.create_tag("contexto", weight=Pango.Weight.BOLD, foreground="goldenrod")
         self.dictTag['dado'] = textbuffer.create_tag("dado", weight=Pango.Weight.BOLD, foreground="Coral")
         self.dictTag['e'] = textbuffer.create_tag("e", foreground="DodgerBlue")
@@ -681,10 +709,6 @@ class Manipulador:
 
     def add_filters(self, dialog):
         filter_features = Gtk.FileFilter()
-        filter_features.set_name("Gerkhin Features")
-        filter_features.add_pattern("*.feature")
-        dialog.add_filter(filter_features)
-
         filter_text = Gtk.FileFilter()
         filter_text.set_name("Text files")
         filter_text.add_mime_type("text/plain")
@@ -811,6 +835,8 @@ class Manipulador:
                         if self.tvEditor.booExisteFeatureAberta:
                             printC('Recarregar CSS')
                             self.recarregaCSS()
+                    elif event.keyval == Gdk.KEY_d: # ctrl + d
+                        self.executaPasso()
             else:
                 if alt:
                     pass
@@ -2005,7 +2031,7 @@ class Manipulador:
         iterEnd = buf.get_end_iter()
         srcStr = buf.get_text(iterStart,iterEnd,False)
 
-        a = re.finditer('Cen\wrio:.*|Funcionalidade:.*|Contexto:.*',srcStr)
+        a = re.finditer('DNC_Zouk_V1_Condutor.*',srcStr)
         listMatch = []
         for m in a:
             listMatch.append(m)
@@ -2102,6 +2128,52 @@ class Manipulador:
         u.iniWrite(cfgINI, 'PATH', 'strCSSFullFilename',strCSSFullFilename)
         u.iniWrite(cfgINI, 'PATH', 'strExportLatexFullFilename',strExportLatexFullFilename)
 
+
+    def executaPasso(self):
+        textbuffer = self.tvEditor.get_buffer()
+        buf = textbuffer
+
+        # Linha Atual
+        m = buf.get_insert()
+        i = buf.get_iter_at_mark(m)
+        numLinha = i.get_line()
+
+        # Total de Linhas e Posicao do Cursor
+        numLinhaTotal = buf.get_line_count()
+        numPosCursor = buf.props.cursor_position
+        # print("Total de Linhas = {}".format(numLinhaTotal))
+        # print("Pos Cursor = {}".format(numPosCursor))
+
+        # Texto da Linha Atual
+        #https://lazka.github.io/pgi-docs/Gtk-3.0/classes/TextIter.html#Gtk.TextIter
+        iterLineStart = buf.get_iter_at_line(numLinha)
+        if ((numLinha + 1) != numLinhaTotal):
+            iterLineEnd = buf.get_iter_at_line(numLinha+1)
+            iterLineEnd.backward_char()
+        else:
+            iterLineEnd = buf.get_end_iter()
+        strLinhaTexto = buf.get_text(iterLineStart,iterLineEnd,False)
+        # print("Texto da Linha = '{}'".format(strLinhaTexto))
+
+        # Vou fazer a separacao do python
+        listSep = strLinhaTexto.split(sep=':')
+        strFullCmd = listSep[3]
+        listSepPeCmd = strFullCmd.split(sep='.')
+        strPe = listSepPeCmd[0]
+        strCmd = listSepPeCmd[1]
+
+        # print('')
+        # print(' NumL : "{}"'.format(numLinha))
+        # print('Linha : "{}"'.format(strLinhaTexto))
+        # print('  Sep : "{}"'.format(str(listSep)))
+        # print('  SepPeCmd : "{}"'.format(str(listSepPeCmd)))
+        # print('  strPe : "{}"'.format(strPe))
+        # print('  strCmd : "{}"'.format(strCmd))
+
+        self.Condutor.agenteDoStep(strPe,strCmd)
+        self.Condutor.plotaAgente(20)
+        self.atualizarCondutorImagens()
+
     # -----------------------------------------------------
                     # Funções para Testes
     # -----------------------------------------------------
@@ -2181,7 +2253,7 @@ Window.show_all()
 
 # Stacks
 # Builder.get_object("stackLeft").hide()
-Builder.get_object("stackRight").hide()
+# Builder.get_object("stackRight").hide()
 Builder.get_object("stackBar").hide()
 
 # Pesquisa

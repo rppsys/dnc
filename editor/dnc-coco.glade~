@@ -741,7 +741,6 @@
                         <property name="visible">True</property>
                         <property name="can_focus">False</property>
                         <property name="orientation">vertical</property>
-                        <property name="homogeneous">True</property>
                         <child>
                           <object class="GtkViewport" id="vpAX">
                             <property name="visible">True</property>
@@ -750,7 +749,7 @@
                               <object class="GtkImage" id="imgAX">
                                 <property name="visible">True</property>
                                 <property name="can_focus">False</property>
-                                <property name="stock">gtk-help</property>
+                                <property name="pixbuf">IMG/ax-atual.png</property>
                               </object>
                             </child>
                           </object>
@@ -768,7 +767,7 @@
                               <object class="GtkImage" id="imgBX">
                                 <property name="visible">True</property>
                                 <property name="can_focus">False</property>
-                                <property name="stock">gtk-help</property>
+                                <property name="pixbuf">IMG/bx-atual.png</property>
                               </object>
                             </child>
                           </object>
@@ -786,7 +785,7 @@
                               <object class="GtkImage" id="imgDX">
                                 <property name="visible">True</property>
                                 <property name="can_focus">False</property>
-                                <property name="stock">gtk-help</property>
+                                <property name="pixbuf">IMG/dx-atual.png</property>
                               </object>
                             </child>
                           </object>
