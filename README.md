@@ -36,6 +36,8 @@ Vamos para os requisitos, ou seja, o pip-list:
 		sudo apt-get install graphviz graphviz-dev
 		pip install pygraphviz
 		pip install pydot
+		
+		pip install django
 
 #### Passos Fundamentais
 
