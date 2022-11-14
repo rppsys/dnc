@@ -95,7 +95,11 @@ https://pythontic.com/image-processing/pillow/rotate
 Tem várias possibilidades mas por hj cansei.
 
 
+## Então vou seguir nas classes criando a classe para o Condutor e Conduzido.
 
+Condutor ou Conduzido sao mesmas instancias da mesma classe Dançarino, Pessoa.
+
+O importante é ter dois pés. 
 
 
 
