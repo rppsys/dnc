@@ -43,8 +43,8 @@ Vamos para os requisitos, ou seja, o pip-list:
 
 Acesse:
 
-> cd editor
-> python dnc.py
+        cd editor
+        python dnc.py
 
 E o editor será aberto!
 
