@@ -36,8 +36,6 @@ Vamos para os requisitos, ou seja, o pip-list:
 		sudo apt-get install graphviz graphviz-dev
 		pip install pygraphviz
 		pip install pydot
-		
-		pip install django
 
 #### Passos Fundamentais
 
@@ -54,5 +52,9 @@ especialmente para produzir passos do samba.
         Condutor.agenteDoStep('pD','ABR')
         Condutor.agenteDoStep('pE','JUN')
         Condutor.plotaAgente(20)
+
+## Diário
+
+Leia meu [Diário](diario-dnc.md) de desenvolvimento desse sistema para mais informações.
 
 
