@@ -2,6 +2,7 @@
 
 "A dança começa nos pés e sobe para o corpo".
 
+![Preview](preview.png "Projeto Dance Footwork")
 
 ## Criação do Ambiente
 
