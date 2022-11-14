@@ -39,6 +39,16 @@ Vamos para os requisitos, ou seja, o pip-list:
 		
 		pip install django
 
+#### Editor
+
+Acesse:
+
+> cd editor
+> python dnc.py
+
+E o editor será aberto!
+
+
 #### Passos Fundamentais
 
 Cheguei à conclusão de que vou precisar revisar alguns passos fundamentais
