@@ -3,10 +3,34 @@ import numpy as np
 import matplotlib.pyplot as plt
 from matplotlib.offsetbox import OffsetImage, AnnotationBbox
 
+import os
+
+# Imagens
+import cv2
+import imutils
+
+strPathDir = '/home/ronie/prog/dnc/editor'
+strSep = os.path.sep
+
+# Leio daqui
+strImgPE_original = strPathDir  + strSep +  "IMG" + strSep +  "ORIGINAL" + strSep + "pE-original.png"
+strImgPD_original = strPathDir  + strSep +  "IMG" + strSep +  "ORIGINAL" + strSep + "pD-original.png"
+
+# Salvo aqui
+strImgPE = strPathDir  + strSep +  "IMG" + strSep + "pE-atual.png"
+strImgPD = strPathDir  + strSep +  "IMG" + strSep + "pD-atual.png"
+
 
 # --------------
 #    ClassePe
 # --------------
+
+# Lê imagem, rotaciona e escreve
+def imgReadRotWrite(strFileImage,numAngle,strFileOut):
+    image = cv2.imread(strFileImage)
+    rotated_image = imutils.rotate(image, angle=numAngle)
+    booRet = cv2.imwrite(strFileOut, rotated_image)
+    return booRet
 
 class ClassePe:
     def __new__(cls, *args, **kwargs):
@@ -169,7 +193,7 @@ def plotaPes(pE,pD,strFilename):
     # ---------------------------------------------------------
     # Pé Esquerdo
     # ---------------------------------------------------------
-    pE_image_path = '/home/ronie/prog/dnc/lab/pE.PNG'
+    pE_image_path = strImgPE
     pE_x = pE.x # Usei a Classe ClassePe pE passada no argumento
     pE_y = pE.y # Idem
     pE_z = 0
@@ -177,7 +201,7 @@ def plotaPes(pE,pD,strFilename):
     # ---------------------------------------------------------
     # Pé Direito
     # ---------------------------------------------------------
-    pD_image_path = '/home/ronie/prog/dnc/lab/pD.PNG'
+    pD_image_path = strImgPD
     pD_x = pD.x # Usei a Classe ClassePe pD passada no argumento
     pD_y = pD.y # Idem
     pD_z = 0
@@ -489,14 +513,14 @@ class ClasseAgente:
         # ---------------------------------------------------------
         # Pé Esquerdo
         # ---------------------------------------------------------
-        pE_image_path = '/home/ronie/prog/dnc/img/pE.PNG'
+        pE_image_path = strImgPE
         pE_x, pE_y = self.retPeEsquerdoPoint()
         pE_z = 0
 
         # ---------------------------------------------------------
         # Pé Direito
         # ---------------------------------------------------------
-        pD_image_path = '/home/ronie/prog/dnc/img/pD.PNG'
+        pD_image_path = strImgPD
         pD_x, pD_y = self.retPeDireitoPoint()
         pD_z = 0
 
@@ -579,7 +603,7 @@ class ClasseAgente:
             self.pD.y = - abs(self.y - pD_y)
 
     # Esse está dentro da Classe Agente
-    def agenteDoStep(self,strPeAlvo,strCmd):
+    def agenteDoStep(self,strPeAlvo,strCmd,strMod):
         ''' Executa strCmd modificando o pe alvo'''
         pE0 = self.pE
         pD0 = self.pD
@@ -587,6 +611,29 @@ class ClasseAgente:
             pA = self.pE
         else:
             pA = self.pD
-        print('{} - {}.{}'.format(self.name,pA.name,strCmd))
+
+        if strMod != '':
+            print('{} - {}.{}({})'.format(self.name,pA.name,strCmd,strMod))
+        else:
+            print('{} - {}.{}'.format(self.name,pA.name,strCmd))
+
+
+        # Vou rodar aqui
+        if strMod != '':
+            if strPeAlvo == 'pE':
+                if strMod == 'q': #90
+                    imgReadRotWrite(strImgPE_original, 90, strImgPE)
+                elif strMod == 'v': #180
+                    imgReadRotWrite(strImgPE_original, 180, strImgPE)
+                elif strMod == 't': #45
+                    imgReadRotWrite(strImgPE_original, 45, strImgPE)
+            else:
+                if strMod == 'q': #90
+                    imgReadRotWrite(strImgPD_original, 90, strImgPD)
+                elif strMod == 'v': #180
+                    imgReadRotWrite(strImgPD_original, 180, strImgPD)
+                elif strMod == 't': #45
+                    imgReadRotWrite(strImgPD_original, 45, strImgPD)
+
         doStep(pA, strCmd, pE0, pD0)
         self.moveCore()  

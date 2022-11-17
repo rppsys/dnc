@@ -50,6 +50,10 @@ from nltk.tokenize import SpaceTokenizer
 
 from unidecode import unidecode
 
+# Imagens
+import cv2
+import imutils
+
 # Meus Imports
 import utils as u
 import pilhaCircular as pC
@@ -81,6 +85,17 @@ strExportLatexFullFilename = u.iniRead(cfgINI, 'PATH', 'strExportLatexFullFilena
 strImgAxFullFilename = strPathDir  + strSep +  "IMG" + strSep + "ax-atual.png"
 strImgBxFullFilename = strPathDir  + strSep +  "IMG" + strSep + "bx-atual.png"
 strImgDxFullFilename = strPathDir  + strSep +  "IMG" + strSep + "dx-atual.png"
+
+# A estratégia com os pé será sempre gerar as imagens de pes que serao usadas pelo stepPlot a partir
+# de duas imagens originais que vou manter em outra pasta
+
+# Leio daqui
+strImgPE_original = strPathDir  + strSep +  "IMG" + strSep +  "ORIGINAL" + strSep + "pE-original.png"
+strImgPD_original = strPathDir  + strSep +  "IMG" + strSep +  "ORIGINAL" + strSep + "pD-original.png"
+
+# Salvo aqui
+strImgPE = strPathDir  + strSep +  "IMG" + strSep + "pE-atual.png"
+strImgPD = strPathDir  + strSep +  "IMG" + strSep + "pD-atual.png"
 
 # Bibliotecas Gtk
 gi.require_version('Gtk','3.0')
@@ -2162,6 +2177,12 @@ class Manipulador:
         strPe = listSepPeCmd[0]
         strCmd = listSepPeCmd[1]
 
+        # Vamos ver se o strCmd tem modificadores
+        # Mudei a especificacao so pra facilitar aqui e depois faço codigo que pega as coisas direitinho
+        strMod = ''
+        if len(listSep) == 5:
+            strMod = listSep[4]
+
         # print('')
         # print(' NumL : "{}"'.format(numLinha))
         # print('Linha : "{}"'.format(strLinhaTexto))
@@ -2169,8 +2190,10 @@ class Manipulador:
         # print('  SepPeCmd : "{}"'.format(str(listSepPeCmd)))
         # print('  strPe : "{}"'.format(strPe))
         # print('  strCmd : "{}"'.format(strCmd))
+        # print('  strMod : "{}"'.format(strMod))
 
-        self.Condutor.agenteDoStep(strPe,strCmd)
+
+        self.Condutor.agenteDoStep(strPe,strCmd,strMod)
         self.Condutor.plotaAgente(20)
         self.atualizarCondutorImagens()
 

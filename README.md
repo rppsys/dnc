@@ -39,6 +39,10 @@ Vamos para os requisitos, ou seja, o pip-list:
 		pip install pydot
 		
 		pip install django
+		
+		# Rotação de Imagens
+		pip install opencv-python
+		pip install imutils
 
 #### Editor
 

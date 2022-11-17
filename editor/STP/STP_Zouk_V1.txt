@@ -8,6 +8,8 @@ DNC_Zouk_V1_Condutor_BAS_LAT_ESQ
 2:1:1:pD.FCF
 3:1:2:pE.LUG
 
+2:1:1:pD.TRS
+
 DNC_Zouk_V1_Condutor_BAS_VER_FRT
 1:2:3:pD.FRT
 2:1:1:pE.JUN
@@ -30,7 +32,7 @@ DNC_Zouk_V1_Condutor_BAS_LUG_ESQ
 
 DNC_Zouk_V1_Condutor_BAS_LAT_ROTf
 1:2:3:pE.ABR
-2:1:1:pD.FRT(rot=fq)
+2:1:1:pD.FRT:q
 3:1:2:pE.JUN
 
 

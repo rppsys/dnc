@@ -149,6 +149,96 @@ Lá dentro eu posso editar tudo.
 E depois ele lê esse arquivo para carregar as possibilidades de opções de sequencias.
 Para criar as sequencias.
 
+## Nota sobre o django
+
+Sobre o django.
+
+
+A idéia de usar o django é para modelar o banco de dados de árvore lá.
+E pq árvore?
+
+Pq a idéia é que existem pares complementares de caminhos condutor / conduzido. Ou seja, quando um condutor executa um caminho o conduzido executa outro.
+As possibilidades são inúmeras. E para mapear isso, nada melhor do que um grafo.
+
+Um grafo hierárquico no qual os caminhos são mapeados para cada agente.
+E depois um tipo diferente de associação que indica os pares de caminhos do condutor e do conduzido que são complementares.
+
+Por fim, eu quero usar o graphviz para testar novas possibilidades de visualizar a árvore.
+
+## Rodar Imagens
+
+pip install opencv-python
+pip install imutils
+
+
+Primeiro problema. Tanto pillow quanto openCV comem os cantos quando a rotação é diferente de multiplos de 90 graus.
+Entao preciso colocar as imagens dos pés dentro de bolas que ficam dentro de quadrados para que os cantos não sejam comidos.
+
+Pronto.
+
+Agora vou tentar implementar a rotação da imagem (pelo menos). A questão de rodar tudo eu farei testes depois.
+
+
+#### Funcionou
+
+Funcionou mas está longe do que quero.
+Ele roda a imagem só.
+
+Mas terei de fazer modificações nas Classes dos Pes para guardar a rotação absoluta deles em relação ao core.
+E modificar o doStep para lá dentro realizar as rotações quando o modificador de rotação estiver presente.
+
+A idéia é a seguinte.
+Rotações precisam de 2 passos para finalizar.
+
+O primeiro pé que roda roda, mas o pe que ficou pra tras nao roda junto.
+Quando o outro pe recebe qualquer comando, sua posicao de rotacao final é calculada usando a posicao de rotacao do pe espelhado.
+
+Ex.:
+
+pE.FRT:ft  --> Pede pro pE ir pra frente e rodar para fora 45 graus
+Ele vai lá e olha o pe direito. Se o t do pe direito é zero, entao o o seu t final sera 0 + 45
+Blz
+
+Ai depois vc faz
+pD.FRT:ft
+
+Ai ele vai olhar a projecao do pe esquerdo e perceber que a diferenca de rotacao entre pE e pD é de 45 graus ja
+Entao a posicao final do pD sera 45 (inicial) + 45 (o que ft mandou fazer) e portanto 90;
+
+E assim cada pe tera que ter um angulo theta de rotação relativo ao core.
+
+Quando pes se movimentam, o core deve se movimentar junto (igual é feito na translacao).
+Só que eu so vou rotacionar o core quando os dois pes rodam e combinam um theta final igual.
+
+OU
+
+Ou eu posso fazer o core rodar com os pE e pD ficando no meio do caminho do theta dos dois.
+
+Ex.: pE tá em +180 e pE tá em 45.
+Nesse momento core tá em 180+45/2.
+
+Ex.: pE tá em +45 e pE tá em -45.
+Nesse momento core tá em 0.
+
+De qualquer forma uma plotagem nova que preciso fazer é o angulo theta de cada coisa.
+Angulo theta do pD pE e do Core.
+
+uma forma e calcular uma linha nos graficos que ja desenho de forma a mostrar tudo junto.
+
+Outra forma e plocar graficos separados mostrando os thetas de cada coisa.
+
+Continuo depois....
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -168,6 +258,12 @@ Para criar as sequencias.
 
 
 
- 
+
+
+
+
+
+
+
 
 
