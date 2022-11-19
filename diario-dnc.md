@@ -230,40 +230,6 @@ Outra forma e plocar graficos separados mostrando os thetas de cada coisa.
 Continuo depois....
 
 
+## 19/11
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
- 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+Então vamos às alterações pra colocar angulo de orientação em tudo.

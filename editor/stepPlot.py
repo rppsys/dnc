@@ -637,3 +637,146 @@ class ClasseAgente:
 
         doStep(pA, strCmd, pE0, pD0)
         self.moveCore()  
+
+################################################################################
+# Classe Pista
+# É a pista de dança onde os agentes dançam
+# A idéia é instanciar os agentes aqui dentro e ter funções para plotar a pista mostrando a posição dos dançarinos aqui dentro
+# A idéia é colocar os condutores nessa pista e as funções de plotagem colocar aqui dentro
+# Aqui em tese dá pra colocar quantos agentes de dança eu quiser para dançarem ao mesmo tempo
+# E aí ao plotar a pista eu passo e ploto todo mundo que está na pista
+################################################################################
+
+class ClassePista:
+    def __new__(cls, *args, **kwargs):
+        # print("1. Create a new instance of Point.")
+        return super().__new__(cls)
+
+    def __init__(self,name, d):
+        self.name = name # Um nome qualquer para a pista
+        self.d = d # Tamanho da pista
+        self.listAgentes = []
+        self.plotaPista()
+
+    def __repr__(self) -> str:
+        return f"{type(self).__name__}(name={self.name}, d={self.d})"
+
+    def iniciaPlot(self):
+        # ******************************************************************** #
+        # Parâmetros de Plotagem
+        # ******************************************************************** #
+        self.fig = plt.figure(figsize=[2*4.48,1*3.5])
+        # Width = 4,48 e Height = 3,5 são ideais. Então peço 2xW e 1xH
+
+        self.ax = self.fig.add_subplot(1, 2, 1, projection='3d')
+        def pt3d(strCap,xx,yy,zz,strCor):
+            x,y,z = xx,yy,zz
+            self.ax.scatter(x, y, z, label='{} ({},{},{})'.format(strCap,x,y,z),color=strCor)
+        self.bx = self.fig.add_subplot(1, 2, 2)
+
+        self.ax.set_title('Pista 3D')
+        self.bx.set_title('Pista 2D')
+
+        self.fig.tight_layout()
+        plt.subplots_adjust(left=None, bottom=None, right=None, top=None, wspace=None, hspace=None)
+
+        # -------------------
+        # Propriedades de ax - Pista 3D
+        # -------------------
+        self.ax.set_xlim(0, self.d)
+        self.ax.set_ylim(0, self.d)
+        self.ax.set_zlim(0, self.d)
+        self.ax.set_xlabel('X - Pista')
+        self.ax.set_ylabel('Y - Pista')
+        self.ax.set_zlabel('Z - Pista')
+        self.ax.view_init(elev=30., azim=-70, roll=0)
+
+        # -------------------
+        # Propriedades de bx - Pista 2D
+        # -------------------
+        self.bx.set_xlim(0, self.d)
+        self.bx.set_ylim(0, self.d)
+        self.bx.set_xlabel('X - Pista')
+        self.bx.set_ylabel('Y - Pista')
+        self.bx.grid()
+
+        # ---------------------------------------------------------
+        # Linhas e Pontos de Referência para me situar no Espaço 3D
+        # ---------------------------------------------------------
+
+        # Pontos no Espaço 3D
+        pt3d('O',0,0,0,'black')
+        pt3d('X',self.d,0,0,'red')
+        pt3d('Y',0,self.d,0,'green')
+        pt3d('Z',0,0,self.d,'blue')
+
+        # Eixo X
+        x = np.linspace(0, self.d, 100)
+        y = x*0
+        self.ax.plot(x, y, zs=0, zdir='z', label='X', color='red')
+
+        # Eixo Y
+        y = np.linspace(0, self.d, 100)
+        x = y*0
+        self.ax.plot(x, y, zs=0, zdir='z', label='Y', color='green')
+
+        # Eixo Z
+        z = np.linspace(0, self.d, 100)
+        x = z*0
+        y = z*0
+        self.ax.plot(x, y, z, zdir='z', label='Z', color='blue')
+
+    def plotaPista(self):
+        self.iniciaPlot()
+        plt.show()
+
+    def putAgente(self,Agente):
+        ''' Insere Condutor '''
+        self.listAgentes.append(Agente)
+
+    def showAgentes(self):
+        for a in self.listAgentes:
+            print(a)
+
+    def plotaAgentes(self):
+        plt.close()
+        self.iniciaPlot()
+        # Funções Auxiliares
+        def pt3d(strCap,xx,yy,zz,strCor):
+            x,y,z = xx,yy,zz
+            self.ax.scatter(x, y, z, label='{} ({},{},{})'.format(strCap,x,y,z),color=strCor)
+        def getImage(path, zoom=0.2):
+            return OffsetImage(plt.imread(path), zoom=zoom)
+
+        # Plota os Agentes que estao na lista
+        for a in self.listAgentes:
+            # Core
+            Core_x, Core_y, Core_z = a.retCorePoint3D()
+
+            # Pé Esquerdo
+            pE_image_path = strImgPE
+            pE_x, pE_y = a.retPeEsquerdoPoint()
+            pE_z = 0
+
+            # Pé Direito
+            pD_image_path = strImgPD
+            pD_x, pD_y = a.retPeDireitoPoint()
+            pD_z = 0
+
+            # Plotagem 3D dos Pontos dos Pés - Plot ax - Pista de Dança
+            pt3d('pE',pE_x,pE_y,pE_z,'magenta')
+            pt3d('pD',pD_x,pD_y,pD_z,'orange')
+            pt3d('Core',Core_x,Core_y,Core_z,'red')
+
+            # Plotagem 2D das Imagens dos Pés - Plot bx - Pista de Dança
+
+            # Insere Pé Esquerdo
+            abPE = AnnotationBbox(getImage(pE_image_path), (pE_x, pE_y), frameon=False)
+            self.bx.add_artist(abPE)
+
+            # Insere Pé Direito
+            abPD = AnnotationBbox(getImage(pD_image_path), (pD_x, pD_y), frameon=False)
+            self.bx.add_artist(abPD)
+
+            # Atualiza Plotagem
+            plt.show()                 
